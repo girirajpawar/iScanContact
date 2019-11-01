@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar class="customToolbar">
+    <img [src]="logo" class="logo">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed" edge>
+      <ion-fab-button color="danger" size="small" (click)="closeApplication()">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+  </ion-fab> 
+  <div class="ion-padding">
+    <div *ngIf="!selectedImage">
+        <!--<ion-button expand="block" (click)="selectSource()">
+            <ion-icon name="camera"></ion-icon>Select Image
+        </ion-button>-->
+        <section>
+          <header class="title">Welcome to iScan</header>
+          <p class="tipsInfo">Please click on camera <ion-icon name="camera"></ion-icon> button to capture or select an existing image.</p>
+          <p class="tipsTitle">Tips:</p>
+          <ul class="tips">
+            <li *ngFor="let tip of tips">
+              {{tip}}
+            </li>
+          </ul>
+        </section> 
+    </div>    
+    <img [src]="selectedImage" *ngIf="selectedImage">
+    <ion-list *ngIf="selectedImage">
+      <ion-item *ngIf="isnamefound">
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text" [(ngModel)]="namefound"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="isphone1found">
+            <ion-label floating>Phone#1</ion-label>
+            <ion-input type="text" [(ngModel)]="phonenumber1"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="isphone2found">
+        <ion-label floating>Phone#2</ion-label>
+        <ion-input type="text" [(ngModel)]="phonenumber2"></ion-input>
+      </ion-item>        
+      <ion-item *ngIf="isemailfound">
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" [(ngModel)]="emailfound"></ion-input>
+      </ion-item>
+      <ion-item  *ngIf="isaddressfound">
+        <ion-label floating class="navigate">Address</ion-label>
+        <ion-textarea [(ngModel)]="addressfound" rows="4"></ion-textarea>
+      </ion-item>      
+    </ion-list>
+    <div class="load" *ngIf="loading">
+      <hr/><hr/><hr/><hr/>
+    </div>
+  </div>
+  <ion-fab *ngIf="selectedImage && phonenumber1" vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button (click)="saveContact()" color="secondary">
+        <ion-icon name="person-add"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>  
+  <ion-fab *ngIf="!selectedImage" vertical="bottom" color="primary" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="selectSource()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+  <!--<ion-fab *ngIf="selectedImage" vertical="center" color="secondary" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="openMapsApp()">
+        <ion-icon name="navigate"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>-->
+  <ion-fab *ngIf="selectedImage" vertical="bottom" color="primary" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="refresh()">
+          <ion-icon name="home"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>    
+  <div class="footer">
+    COPYRIGHT © 2019. ALL RIGHTS RESERVED. DESIGNED BY <a href="http://cerebion.com" rel="nofollow">CEREBION</a>
+  </div>
+</ion-content>
