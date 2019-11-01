@@ -1,0 +1,7 @@
+{
+  "name": "ScanningAppIonic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
